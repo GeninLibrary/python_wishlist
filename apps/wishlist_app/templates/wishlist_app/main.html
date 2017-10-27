@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>     Main      </title>
+</head>
+<body>
+    <h1>Hello, {{request.session.name}}   <a href="/logout" style="margin-left:100px">Logout</a></h1>
+
+    Your wish list:
+    <table border="1">
+        <tr>
+            <th>Item</th>
+            <th>Added By</th>
+            <th>Date Added</th>
+            <th>Action</th>
+        </tr>
+        {% for item in this_user.all_items.all %}
+        <tr>
+            <td><a href="/display_item/{{item.id}}">{{item.name}}</a></td>
+            <td>{{item.creator.name}}</td>
+            <td>{{item.date}}</td>
+            <td> <a href="/delete_item/{{item.id}}"> Delete </a></td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+
+    <hr>
+
+    Other User's wish list:
+    <table border="1">
+        <tr>
+            <th>Item</th>
+            <th>Added By</th>
+            <th>Date Added</th>
+            <th>Action</th>
+        </tr>
+        {% for item in other_items.all %}
+        <tr>
+            <td><a href="/display_item/{{item.id}}"></a>{{item.name}}</td>
+            <td>{{item.creator.name}}</td>
+            <td>{{item.date}}</td>
+            <td> <a href="/add_to_wishlist/{{item.id}}"> Add to my Wishlist </a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <hr>
+
+    <a href="/render_item_build"> Add Item </a>
+
+
+</body>
+</html>

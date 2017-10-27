@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>    Item Display    </title>
+</head>
+<body>
+    <h1>{{shown_item.name}}     <a href="/main" style="margin-left:100px; font-size:12px">Home</a><a href="/logout" style="margin-left:100px; font-size:12px">Logout</a></h1>
+
+    <h4>Users who added this product/item under their wish list:</h4>
+
+    {% for users in shown_item.all_users.all %}
+    <p>{{users.name}}</p>
+    {% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>     Login Page    </title>
+</head>
+<body>
+    <h1>REGISTRATION</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p style = "color: rgb(219, 141, 6);">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form action="/register_account" method ="post">                   <!--- route form data to views.register() --> 
+        {% csrf_token %}                                                <!--- register() tied to registerVal in models -->
+        Name : <input type="text" name="name"><br>
+        Username : <input type="text" name = "username"><br>
+        Date Hired : <input type="date" name="date"><br>
+        Password : <input type="text" name = "password"><br>
+        Confirm Password : <input type="text" name = "c_password"><br>
+        <input type="submit" value = "Register User" style="background-color: blue;color: white;">
+    </form>
+
+    <hr>
+
+    <h1>LOGIN</h1>
+
+    <form action="/login" method = "post">                              <!--- route form data to views.login() -->
+        {% csrf_token %}                                                <!--- login() tied to loginVal in models -->
+        Username : <input type="text" name = "username"><br>
+        Password : <input type="text" name = "password"><br>
+        <input type="submit" value = "Login" style="background-color: rgb(26, 112, 26);color: white;">
+    </form>
+
+</body>
+</html>
